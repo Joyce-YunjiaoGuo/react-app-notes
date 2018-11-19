@@ -2,7 +2,7 @@ export default {
     MAX_ATTACHMENT_SIZE: 5000000,
     s3: {
       REGION: "us-east-2",
-      BUCKET: "notes-app-uploads"
+      BUCKET: "notes-app-uploads1111"
     },
     apiGateway: {
       REGION: "us-east-2",
