@@ -5,6 +5,7 @@ import config from "../config";
 import "./NewNote.css";
 import { API } from "aws-amplify";
 import { s3Upload } from "../libs/awsLib";
+import Upload from './Upload';
 
 export default class NewNote extends Component {
   constructor(props) {
@@ -79,6 +80,7 @@ export default class NewNote extends Component {
             <ControlLabel>Attachment</ControlLabel>
             <FormControl onChange={this.handleFileChange} type="file" />
           </FormGroup>
+          
           <LoaderButton
             block
             bsStyle="primary"
@@ -90,6 +92,7 @@ export default class NewNote extends Component {
             loadingText="Creating…"
           />
         </form>
+        <Upload/>
       </div>
     );
   }

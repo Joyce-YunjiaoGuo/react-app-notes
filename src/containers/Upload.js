@@ -8,8 +8,7 @@ const GoogleDrive = require('@uppy/google-drive');
 const Dropbox = require('@uppy/dropbox');
 const Instagram = require('@uppy/instagram');
 const Webcam = require('@uppy/webcam');
-const AwsS3 = require('@uppy/aws-s3')
-const ms = require('ms')
+const AwsS3 = require('@uppy/aws-s3');
 // const DragDrop = require('@uppy/drag-drop');
 // const ProgressBar = require('@uppy/progress-bar');
 // const Tus = require('@uppy/tus');
@@ -74,7 +73,7 @@ class App extends Component {
             })
             .on("complete", result => {
                 console.log("failed ", result.failed);
-                console.log("failed ", result.successful);
+                console.log("successful ", result.successful);
             })
             
 
@@ -100,8 +99,8 @@ class App extends Component {
             <div className="Upload">
                 <button className="UppyModalOpenerBtn">Add File</button>
                 <div className="DashboardContainer">
-                    <div className="UppyDragDrop" />
-                    <div className="UppyDragDrop-Progress" />
+                    {/* <div className="UppyDragDrop" />
+                    <div className="UppyDragDrop-Progress" /> */}
                     {/* <button onClick={this.uploadFile}>Log previews to console / Submit</button> */}
                 </div>
             </div>

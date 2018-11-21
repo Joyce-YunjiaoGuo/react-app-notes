@@ -5,6 +5,7 @@ import LoaderButton from "../components/LoaderButton";
 import config from "../config";
 import "./Notes.css";
 import { s3Upload } from "../libs/awsLib";
+import Upload from './Upload';
 
 export default class Notes extends Component {
   constructor(props) {
@@ -153,6 +154,7 @@ export default class Notes extends Component {
                 <ControlLabel>Attachment</ControlLabel>}
               <FormControl onChange={this.handleFileChange} type="file" />
             </FormGroup>
+            <Upload/>
             <LoaderButton
               block
               bsStyle="primary"
