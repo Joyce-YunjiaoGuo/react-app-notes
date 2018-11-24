@@ -69,7 +69,7 @@ export default class NewNote extends Component {
     return (
       <div className="NewNote">
         <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="content">
+          {/* <FormGroup controlId="content">
             <FormControl
               onChange={this.handleChange}
               value={this.state.content}
@@ -79,9 +79,9 @@ export default class NewNote extends Component {
           <FormGroup controlId="file">
             <ControlLabel>Attachment</ControlLabel>
             <FormControl onChange={this.handleFileChange} type="file" />
-          </FormGroup>
+          </FormGroup> */}
           
-          <LoaderButton
+          {/* <LoaderButton
             block
             bsStyle="primary"
             bsSize="large"
@@ -90,9 +90,10 @@ export default class NewNote extends Component {
             isLoading={this.state.isLoading}
             text="Create"
             loadingText="Creating…"
-          />
+          /> */}
+          <Upload/>
         </form>
-        <Upload/>
+        
       </div>
     );
   }
