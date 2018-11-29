@@ -42,9 +42,9 @@ class Upload extends Component {
                     console.log("i am going to upload files", files);
                 }
             })
-            .use(GoogleDrive, { target: Dashboard, serverUrl: 'http://localhost:3010' })
-            .use(Dropbox, { target: Dashboard, serverUrl: 'http://localhost:3010' })
-            .use(Instagram, { target: Dashboard, serverUrl: 'http://localhost:3010' })
+            .use(GoogleDrive, { target: Dashboard, serverUrl: 'http://localhost:8080' })
+            .use(Dropbox, { target: Dashboard, serverUrl: 'http://localhost:8080' })
+            .use(Instagram, { target: Dashboard, serverUrl: 'http://localhost:8080' })
             .use(Webcam, { target: Dashboard })
             .use(AwsS3, {
                 limit: 0,
