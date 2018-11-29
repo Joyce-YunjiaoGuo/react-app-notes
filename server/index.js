@@ -30,7 +30,10 @@ const options = {
       region: "us-east-2"
     }
   },
-  server: { host: 'localhost:8080' },
+  server: { 
+    host: 'simplenotes.netlify.com:8080',
+    protocal: "https"
+ },
   filePath: DATA_DIR,
   secret: 'blah blah',
   debug: true
