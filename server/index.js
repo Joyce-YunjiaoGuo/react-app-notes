@@ -31,7 +31,7 @@ const options = {
     }
   },
   server: { 
-    host: 'simplenotes.netlify.com:8080',
+    host: 'simplenotes.netlify.com',
     protocal: "https"
  },
   filePath: DATA_DIR,
