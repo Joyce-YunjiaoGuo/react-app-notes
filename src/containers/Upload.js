@@ -49,7 +49,7 @@ class Upload extends Component {
             .use(AwsS3, {
                 limit: 0,
                 timeout: 30000,
-                serverUrl: 'https://simplenotes.netlify.com'
+                serverUrl: 'http://localhost:8080'
             })
 
             .on('file-added', (file) => {
