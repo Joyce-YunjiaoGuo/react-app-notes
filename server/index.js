@@ -24,8 +24,8 @@ const options = {
     },
     s3: {
       getKey: (req, filename) => `private/${filename}`,
-      // key: "AKIAJF7PP5XEV66HLVZQ",
-      // secret: "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",
+      // key: "***",
+      // secret: "***",
       bucket: "notes-app-uploads1111",
       region: "us-east-2"
     }
