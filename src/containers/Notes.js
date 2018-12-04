@@ -5,7 +5,7 @@ import LoaderButton from "../components/LoaderButton";
 import config from "../config";
 import "./Notes.css";
 import { s3Upload } from "../libs/awsLib";
-import Upload from './Upload';
+import UploadReact from './UploadReact';
 
 export default class Notes extends Component {
   constructor(props) {
@@ -60,9 +60,14 @@ export default class Notes extends Component {
     });
   }
   
-  handleFileChange = event => {
-    this.file = event.target.files[0];
-  }
+  // handleFileChange = event => {
+  //   this.file = event.target.files[0];
+  // }
+
+  handleFileChange(data) {
+    console.log(data);
+    this.file = data;
+  } 
   
   saveNote(note) {
     return API.put("notes", `/notes/${this.props.match.params.id}`, {
@@ -136,7 +141,7 @@ export default class Notes extends Component {
                 componentClass="textarea"
               />
             </FormGroup>
-            {this.state.note.attachment &&
+            {/* {this.state.note.attachment &&
               <FormGroup>
                 <ControlLabel>Attachment</ControlLabel>
                 <FormControl.Static>
@@ -153,8 +158,10 @@ export default class Notes extends Component {
               {!this.state.note.attachment &&
                 <ControlLabel>Attachment</ControlLabel>}
               <FormControl onChange={this.handleFileChange} type="file" />
-            </FormGroup>
-            <Upload/>
+            </FormGroup> */}
+
+            <UploadReact handleFileChange = {file => this.handleFileChange(file)}/> 
+              
             <LoaderButton
               block
               bsStyle="primary"

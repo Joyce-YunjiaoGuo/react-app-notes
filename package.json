@@ -16,6 +16,8 @@
     "@uppy/dropbox": "^0.26.0",
     "@uppy/google-drive": "^0.26.0",
     "@uppy/instagram": "^0.26.0",
+    "@uppy/react": "^0.29.0",
+    "@uppy/transloadit": "^0.29.0",
     "@uppy/tus": "^0.26.0",
     "@uppy/webcam": "^0.26.0",
     "ajv": "^6.0.0",
@@ -44,7 +46,8 @@
     "redis": "^2.8.0",
     "redis-parser": "^3.0.0",
     "request-compose": "^1.0.0",
-    "upload-server": "^1.1.6"
+    "upload-server": "^1.1.6",
+    "uppy": "^0.29.0"
   },
   "scripts": {
     "start:client": "react-scripts start -t babelify -g aliasify",

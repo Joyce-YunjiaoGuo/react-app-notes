@@ -5,7 +5,7 @@ import config from "../config";
 import "./NewNote.css";
 import { API } from "aws-amplify";
 import { s3Upload } from "../libs/awsLib";
-import Upload from './Upload';
+import UploadReact from './UploadReact';
 
 export default class NewNote extends Component {
   constructor(props) {
@@ -29,9 +29,11 @@ export default class NewNote extends Component {
     });
   }
 
-  handleFileChange = event => {
-    this.file = event.target.files[0];
-  }
+  handleFileChange(data) {
+    console.log(data);
+    this.file = data;
+  } 
+  
 
   handleSubmit = async event => {
     event.preventDefault();
@@ -76,11 +78,11 @@ export default class NewNote extends Component {
               componentClass="textarea"
             />
           </FormGroup>
-          <FormGroup controlId="file">
+          {/* <FormGroup controlId="file">
             <ControlLabel>Attachment</ControlLabel>
             <FormControl onChange={this.handleFileChange} type="file" />
-          </FormGroup>
-          
+          </FormGroup> */}
+          <UploadReact handleFileChange = {file => this.handleFileChange(file)}/>
           <LoaderButton
             block
             bsStyle="primary"
@@ -93,7 +95,7 @@ export default class NewNote extends Component {
           />
           
         </form>
-        <Upload/>
+        
         
       </div>
     );
