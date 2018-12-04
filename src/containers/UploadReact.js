@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { DashboardModal } from '@uppy/react';
+import DashboardModal from '@uppy/react/lib/DashboardModal'
+
 
 const Uppy = require('@uppy/core');
 const Transloadit = require('@uppy/transloadit')
@@ -10,16 +11,16 @@ const Instagram = require('@uppy/instagram');
 // const Tus = require('@uppy/tus')
 
 
-class UploadReact extends Component {
+class UploadReact extends React.Component {
   constructor (props) {
     super(props)
+
+    this.fileName = '';
 
     this.state = {
       modalOpen: false
     }
 
-    this.handleDashboardOpen = this.handleDashboardOpen.bind(this)
-    this.handleDashboardClose = this.handleDashboardClose.bind(this)
   }
   
   componentWillMount () {
@@ -44,8 +45,12 @@ class UploadReact extends Component {
     this.uppy.use(Dropbox, {serverUrl: null});
     this.uppy.use(Instagram, {serverUrl: null});
     // this.uppy.use(Tus, { resume: false })
-    this.uppy.run()
-    // this.uppy.on('transloadit:result', (stepName, result) => { this.handleUploadAssembly(stepName, result) })
+    // this.uppy.run()
+    this.uppy.on('transloadit:result', (stepName, result) => {
+      this.handleUploadAssembly(stepName, result);
+      const filee = this.uppy.getFile(result.localId)
+      this.fileName = filee.name;
+    })
     this.uppy.on("upload-success", (file) => {
       this.props.handleFileChange(file.data);
     })
@@ -57,14 +62,6 @@ class UploadReact extends Component {
   }
 
 
-  // handleUploadAssembly = (stepName, result) => {
-  //   console.log(stepName)
-  //   if (stepName === ':original')
-  //     this.handleUploadFile(result)
-  //   else if (stepName === 'animated')
-  //     this.handleUploadThumb(result)
-  // }
-
   handleUploadComplete = (result) => {
     this.uppy.reset()
     this.setState({ modalOpen: false })
@@ -75,20 +72,30 @@ class UploadReact extends Component {
     else
       console.log('upload failed:', result.failed)
   }
-  
-  // handleUploadFile = (result) => {
-  //   if (result && (result.type === 'video')) {
-  //     console.log('upload file:', result.ssl_url)
-  //     console.log(result)
-  //   }
-  // }
 
-  // handleUploadThumb = (result) => {
-  //   if (result && (result.ext === 'gif')) {
-  //     console.log('upload thumb:', result.ssl_url)
-  //     console.log(result)
-  //   }
-  // }
+  handleUploadAssembly = (stepName, result) => {
+    console.log(stepName)
+    if (stepName === ':original')
+      this.handleUploadFile(result)
+    else if (stepName === 'animated')
+      this.handleUploadThumb(result)
+  }
+
+  
+  
+  handleUploadFile = (result) => {
+    if (result && (result.type === 'video')) {
+      console.log('upload file:', result.ssl_url)
+      console.log(result)
+    }
+  }
+
+  handleUploadThumb = (result) => {
+    if (result && (result.ext === 'gif')) {
+      console.log('upload thumb:', result.ssl_url)
+      console.log(result)
+    }
+  }
 
   handleDashboardClose = () => {
     this.setState({ modalOpen: false })
@@ -101,7 +108,6 @@ class UploadReact extends Component {
   render () {
     return (
       <div>
-        <h1>Uploader</h1>
         <button onClick={this.handleDashboardOpen}>Upload</button>
         <DashboardModal
           uppy={this.uppy}
@@ -110,7 +116,10 @@ class UploadReact extends Component {
           onRequestClose={this.handleDashboardClose}
           plugins={['Webcam', 'GoogleDrive', 'Dropbox', 'Instagram']}
           note='Video files only, size 200MB or less'
+          showProgressDetails={true}
+          replaceTargetContent= {true}
         />
+        <span>{this.fileName}</span>
       </div>
     )
   }
